@@ -32,4 +32,8 @@ yarn install
 
 ## TODO
 
-- Finalizar documentación
+- [ ] Finalizar documentación
+- [ ] Mejorar ejercicio 7
+- [ ] Mejorar ejercicio 9
+- [ ] Mejorar ejercicio 13
+- [ ] Mejorar ejercicio 15
