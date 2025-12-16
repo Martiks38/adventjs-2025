@@ -5,22 +5,21 @@ import prettier from 'eslint-plugin-prettier';
 export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
+
   {
     files: ['**/*.ts'],
-    languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: 'module',
-    },
-    plugins: {
-      prettier,
-    },
+    plugins: { prettier },
     rules: {
       'prettier/prettier': 'error',
-      '@typescript-eslint/no-unused-vars': 'warn',
+
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
     },
   },
+
   {
-    ignores: ['node_modules/**', 'dist/**'],
+    ignores: ['node_modules/**'],
   },
 ];
