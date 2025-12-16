@@ -1,0 +1,12 @@
+{
+  "name": "adventjs",
+  "version": "1.0.0",
+  "description": "Soluciones y ejercicios para los desafíos diarios de Advent",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["TypeScript", "Vitest"],
+  "author": "Martiks38",
+  "license": "ISC",
+  "packageManager": "pnpm@10.18.3"
+}

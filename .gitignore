@@ -1,0 +1,15 @@
+# --- Básico de Node ---
+node_modules/
+*.log
+.pnpm-debug.log*
+
+# --- Compilados/artefactos comunes ---
+dist/
+build/
+
+# --- Vitest / cobertura ---
+coverage/
+
+# --- Caches opcionales (comunes) ---
+.eslintcache
+.stylelintcache
