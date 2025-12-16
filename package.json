@@ -1,12 +1,28 @@
 {
   "name": "adventjs",
+  "type": "module",
   "version": "1.0.0",
   "description": "Soluciones y ejercicios para los desafíos diarios de Advent",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write ."
   },
-  "keywords": ["TypeScript", "Vitest"],
+  "keywords": [
+    "TypeScript",
+    "Vitest"
+  ],
   "author": "Martiks38",
   "license": "ISC",
-  "packageManager": "pnpm@10.18.3"
+  "packageManager": "pnpm@10.18.3",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "8.50.0",
+    "@typescript-eslint/parser": "8.50.0",
+    "eslint": "9.39.2",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-prettier": "5.5.4",
+    "prettier": "3.7.4",
+    "ts-node": "10.9.2",
+    "typescript": "5.9.3",
+    "vitest": "4.0.15"
+  }
 }
