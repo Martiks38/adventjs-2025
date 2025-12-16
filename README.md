@@ -6,7 +6,7 @@ Está inspirado en el Adviento, el tiempo litúrgico cristiano, con retos de pro
 
 ## Requisitos
 
-- Gestor de paquetes: [pnpm](https://pnpm.io), [npm](https://www.npmjs.com) o [yarn](https://yarnpkg.com)
+- Gestor de paquetes: [pnpm](https://pnpm.io)
 
 ## Instalación
 
@@ -19,15 +19,7 @@ git clone https://github.com/Martiks38/adventjs-2025.git
 Instala las dependencias:
 
 ```bash
-npm i
-```
-
-```bash
 pnpm install
-```
-
-```bash
-yarn install
 ```
 
 ## TODO
