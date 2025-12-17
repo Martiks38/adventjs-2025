@@ -18,7 +18,7 @@ describe('Challenge 01', () => {
     const gifts = ['car', 'doll#arm', 'ball', '#train'];
     const result = filterGifts(gifts);
 
-    expect(result.length).toBe(2);
+    expect(result).toHaveLength(2);
     expect(result).toEqual(['car', 'ball']);
   });
 
@@ -26,7 +26,7 @@ describe('Challenge 01', () => {
     const gifts = ['#broken', '#rusty'];
     const result = filterGifts(gifts);
 
-    expect(result.length).toBe(0);
+    expect(result).toHaveLength(0);
     expect(result).toEqual([]);
   });
 
@@ -34,7 +34,7 @@ describe('Challenge 01', () => {
     const gifts: string[] = [];
     const result = filterGifts(gifts);
 
-    expect(result.length).toBe(0);
+    expect(result).toHaveLength(0);
     expect(result).toEqual([]);
   });
 });
