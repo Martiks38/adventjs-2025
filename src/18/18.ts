@@ -41,26 +41,18 @@ export function hasFourInARow(board: string[][]): boolean {
   }
 
   for (let r = 0; r <= rows - TARGET_LIGHTS_ON; r++) {
-    for (let c = 0; c <= cols - TARGET_LIGHTS_ON; c++) {
-      const diag: string[] = [];
+    for (let c = 0; c < cols; c++) {
+      const mainDiag: string[] = [];
+      const secDiag: string[] = [];
 
       for (let i = 0; i < TARGET_LIGHTS_ON; i++) {
-        diag.push(board[r + i][c + i]);
+        if (c + i < cols) mainDiag.push(board[r + i][c + i]);
+
+        if (c - i >= 0) secDiag.push(board[r + i][c - i]);
       }
 
-      if (checkPanel(diag)) return true;
-    }
-  }
-
-  for (let r = 0; r <= rows - TARGET_LIGHTS_ON; r++) {
-    for (let c = TARGET_LIGHTS_ON - 1; c < cols; c++) {
-      const diag: string[] = [];
-
-      for (let i = 0; i < TARGET_LIGHTS_ON; i++) {
-        diag.push(board[r + i][c - i]);
-      }
-
-      if (checkPanel(diag)) return true;
+      if (checkPanel(mainDiag)) return true;
+      if (checkPanel(secDiag)) return true;
     }
   }
 
