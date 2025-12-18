@@ -16,7 +16,7 @@
   ],
   "author": "Martiks38",
   "license": "ISC",
-  "packageManager": "pnpm@10.18.3",
+  "packageManager": "pnpm@10.26.0",
   "lint-staged": {
     "*.ts": "eslint --fix"
   },
