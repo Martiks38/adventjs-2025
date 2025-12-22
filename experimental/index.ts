@@ -10,8 +10,6 @@ async function main() {
   try {
     const answers = await inputCollector();
     await createFiles(answers);
-
-    process.exit(0);
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
     console.log(`${pc.bgRed('Error')}: ${pc.bold(msg)}`);
@@ -20,6 +18,8 @@ async function main() {
   } finally {
     ReadlineSingleton.close();
   }
+
+  process.exit(0);
 }
 
 main();
