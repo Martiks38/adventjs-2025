@@ -44,8 +44,7 @@ const testGenerator = ({
   functionName,
   numberChallenge,
 }: TestContext): string => {
-  return `import { describe, expect, it } from 'vitest';
-\nimport { ${functionName} } from './${numberChallenge}.ts';\ndescribe('Challenge ${numberChallenge} - ${functionName}', () => { });\n`;
+  return `import { describe, expect, it } from 'vitest';\nimport { ${functionName} } from './${numberChallenge}.ts';\ndescribe('Challenge ${numberChallenge} - ${functionName}', () => { });\n`;
 };
 
 const markdownGenerator = ({
@@ -53,7 +52,7 @@ const markdownGenerator = ({
   nameChallenge,
   numberChallenge,
 }: MarkdownContext): string => {
-  return `# RETO ${numberChallenge}: ${nameChallenge}\n\n<ins>Dificultad: ${difficult}</ins>\n`;
+  return `# RETO ${numberChallenge}: ${nameChallenge}\n\n<ins>Dificultad: ${difficult}</ins>\n🧩 Ejemplos\n~~~JS\n\n~~~\n`;
 };
 
 export async function createFiles(answers: string[]) {
