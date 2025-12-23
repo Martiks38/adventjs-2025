@@ -61,9 +61,9 @@ describe('Challenge 23 - minStepsToDeliver', () => {
     ];
 
     // S → (0,4) = 4 steps
-    // S → (2,0) = 6 steps
-    // Total = 10
-    expect(minStepsToDeliver(map)).toBe(10);
+    // S → (2,0) = 8 steps
+    // Total = 12
+    expect(minStepsToDeliver(map)).toBe(12);
   });
 
   it('returns -1 if a house is completely blocked by obstacles', () => {
