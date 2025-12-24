@@ -27,18 +27,8 @@ type ContentGenerators = {
   [K in keyof GeneratorContextMap]: (ctx: GeneratorContextMap[K]) => string;
 };
 
-const contentGenerators: ContentGenerators = {
-  '.md': (ctx: MarkdownContext) => markdownGenerator(ctx),
-  '.ts': (ctx: SolutionRenderContext) => ctx.funcStatement,
-  '.test.ts': (ctx: TestContext) => testGenerator(ctx),
-};
-
-function generateContent<K extends keyof ContentGenerators>(
-  suffix: K,
-  ctx: GeneratorContextMap[K],
-): string {
-  return contentGenerators[suffix](ctx);
-}
+const solutionFileGenerator = (ctx: SolutionRenderContext) =>
+  `exports ${ctx.funcStatement}`;
 
 const testGenerator = ({
   functionName,
@@ -52,8 +42,21 @@ const markdownGenerator = ({
   nameChallenge,
   numberChallenge,
 }: MarkdownContext): string => {
-  return `# RETO ${numberChallenge}: ${nameChallenge}\n\n<ins>Dificultad: ${difficult}</ins>\n🧩 Ejemplos\n~~~JS\n\n~~~\n`;
+  return `# RETO ${numberChallenge}: ${nameChallenge}\n\n<ins>Dificultad: ${difficult}</ins>\n\n🧩 Ejemplos\n\n~~~JS\n\n~~~\n`;
 };
+
+const contentGenerators: ContentGenerators = {
+  '.md': (ctx: MarkdownContext) => markdownGenerator(ctx),
+  '.ts': (ctx: SolutionRenderContext) => solutionFileGenerator(ctx),
+  '.test.ts': (ctx: TestContext) => testGenerator(ctx),
+};
+
+function generateContent<K extends keyof ContentGenerators>(
+  suffix: K,
+  ctx: GeneratorContextMap[K],
+): string {
+  return contentGenerators[suffix](ctx);
+}
 
 export async function createFiles(answers: string[]) {
   const [
