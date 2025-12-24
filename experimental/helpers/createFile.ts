@@ -28,13 +28,13 @@ type ContentGenerators = {
 };
 
 const solutionFileGenerator = (ctx: SolutionRenderContext) =>
-  `exports ${ctx.funcStatement}`;
+  `export ${ctx.funcStatement}`;
 
 const testGenerator = ({
   functionName,
   numberChallenge,
 }: TestContext): string => {
-  return `import { describe, expect, it } from 'vitest';\nimport { ${functionName} } from './${numberChallenge}.ts';\ndescribe('Challenge ${numberChallenge} - ${functionName}', () => { });\n`;
+  return `import { describe, expect, it } from 'vitest';\nimport { ${functionName} } from './${numberChallenge}.ts';\n\ndescribe('Challenge ${numberChallenge} - ${functionName}', () => { });\n`;
 };
 
 const markdownGenerator = ({
