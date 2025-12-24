@@ -86,10 +86,7 @@ describe('Challenge 24 - isTreesSynchronized', () => {
   });
 
   it('handles undefined trees correctly', () => {
-    expect(isTreesSynchronized(undefined, undefined)).toEqual([
-      true,
-      undefined,
-    ]);
+    expect(isTreesSynchronized(undefined, undefined)).toEqual([true, '']);
 
     expect(isTreesSynchronized({ value: '🎄' }, undefined)).toEqual([
       false,
