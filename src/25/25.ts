@@ -25,15 +25,6 @@ export function execute(code: string): number {
   const loops = new Map<number, number>();
   const conditionals = new Map<number, number>();
 
-  const save = (
-    map: Map<number, number>,
-    initialIndex: number,
-    endIndex: number,
-  ) => {
-    map.set(initialIndex, endIndex);
-    map.set(endIndex, initialIndex);
-  };
-
   for (let p = 0; p < totalInstructions; p++) {
     const char = code[p];
 
@@ -45,50 +36,48 @@ export function execute(code: string): number {
     if (char === TOKENS.LOOP_END || char === TOKENS.CONDITIONAL_END) {
       const last = stack.pop()!;
 
-      const map = last.char === TOKENS.CONDITIONAL_INIT ? conditionals : loops;
-
-      save(map, last.pos, p);
+      if (last.char === TOKENS.CONDITIONAL_INIT) {
+        conditionals.set(last.pos, p);
+      } else {
+        loops.set(last.pos, p);
+        loops.set(p, last.pos);
+      }
     }
   }
 
-  const incrementHandler = (state: ExecutionState): void => {
-    state.value++;
-    state.index++;
-  };
+  const jump = (state: ExecutionState, token: Token): void => {
+    const isLoop = token === '[' || token === ']';
+    const isStart = token === '[' || token === '{';
 
-  const decrementHandler = (state: ExecutionState): void => {
-    state.value--;
-    state.index++;
-  };
+    const map = isLoop ? loops : conditionals;
 
-  const handleLoop = (state: ExecutionState, token: Token): void => {
-    const keepGoing = token === '[' ? state.value !== 0 : state.value === 0;
+    let shouldStay: boolean;
 
-    state.index = keepGoing ? state.index + 1 : loops.get(state.index)! + 1;
-  };
-
-  const initialConditionalHandler = (state: ExecutionState): void => {
-    if (state.value !== 0) {
-      state.index++;
-      return;
+    if (isLoop) {
+      shouldStay = isStart ? state.value !== 0 : state.value === 0;
+    } else {
+      shouldStay = isStart ? state.value !== 0 : true;
     }
-    const jumpTo = conditionals.get(state.index)!;
 
-    state.index = jumpTo + 1;
+    state.index = shouldStay ? state.index + 1 : map.get(state.index)! + 1;
   };
 
-  const handlers: Record<Token, (state: ExecutionState) => void> = {
-    '>': (state) => {
-      state.index++;
+  const handlers: Record<Token, (s: ExecutionState) => void> = {
+    '>': (s) => {
+      s.index++;
     },
-    '+': (state) => incrementHandler(state),
-    '-': (state) => decrementHandler(state),
-    '[': (state) => handleLoop(state, '['),
-    ']': (state) => handleLoop(state, ']'),
-    '{': (state) => initialConditionalHandler(state),
-    '}': (state) => {
-      state.index++;
+    '+': (s) => {
+      s.value++;
+      s.index++;
     },
+    '-': (s) => {
+      s.value--;
+      s.index++;
+    },
+    '[': (s) => jump(s, '['),
+    ']': (s) => jump(s, ']'),
+    '{': (s) => jump(s, '{'),
+    '}': (s) => s.index++,
   };
 
   while (state.index < totalInstructions) {
@@ -99,5 +88,3 @@ export function execute(code: string): number {
 
   return state.value;
 }
-
-console.log(execute('>>>+{++}'));
