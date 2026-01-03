@@ -21,11 +21,3 @@ Instala las dependencias:
 ```bash
 pnpm install
 ```
-
-## TODO
-
-- [ ] Finalizar documentación
-- [ ] Mejorar ejercicio 7
-- [ ] Mejorar ejercicio 9
-- [ ] Mejorar ejercicio 13
-- [ ] Mejorar ejercicio 15
