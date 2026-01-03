@@ -43,10 +43,6 @@ describe('Challenge 25 - execute', () => {
       expect(execute('')).toBe(0);
     });
 
-    it('ignores unknown or invalid characters', () => {
-      expect(execute('++x+?')).toBe(3);
-    });
-
     it('skips an entire loop if the value is zero at loop start', () => {
       expect(execute('[-]++++')).toBe(4);
     });

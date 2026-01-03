@@ -82,8 +82,9 @@ export function execute(code: string): number {
 
   while (state.index < totalInstructions) {
     const instruction = code[state.index] as Token;
+    const fn = handlers[instruction];
 
-    handlers[instruction](state);
+    fn(state);
   }
 
   return state.value;
